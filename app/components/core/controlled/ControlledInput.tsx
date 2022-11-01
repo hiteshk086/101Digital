@@ -1,3 +1,4 @@
+// Controlled input for validation using Yup and React hook form
 import {Text, TextInput} from 'react-native';
 import React, {ComponentProps} from 'react';
 import {Control, Controller, FieldValues} from 'react-hook-form';
