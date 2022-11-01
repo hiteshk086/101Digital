@@ -7,12 +7,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 import {VIEW_INVOICE} from '../../constants/routes';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {pushNewInvoice} from '../../redux/actions/invoice';
+import {MainState} from '../../redux/interfaces';
+import _ from 'lodash';
 const ListInvoice = () => {
-  const [invoices, setInvoices] = useState([]);
-  const [searchInvoice, setSearchInvoices] = useState([]);
+  //   const [invoices, setInvoices] = useState([]);
+  const [searchInvoice, setSearchInvoices] = useState<any[]>([]);
   const [searchString, setSearchString] = useState('');
   const navigation = useNavigation<any>();
+  const dispatch = useDispatch();
+  const invoices = useSelector((state: MainState) => state.invoice.allInvoices);
   const fetchInvoice = async () => {
     const tokenData: any = await AsyncStorage.getItem('@accessToken');
     const orgToken: any = await AsyncStorage.getItem('@org_token');
@@ -39,13 +44,18 @@ const ListInvoice = () => {
     })
       .then(res => {
         console.log('LIST INVOICE : ', JSON.stringify(res.data.data));
-        setInvoices(res.data.data);
+        res.data.data.map((res: any) => {
+          dispatch(pushNewInvoice(res));
+        });
+        // setInvoices(res.data.data);
         setSearchInvoices(res.data.data);
       })
       .catch(err => console.log('List Invoice Error --> ', err));
   };
   useEffect(() => {
-    fetchInvoice();
+    if (_.isEmpty(invoices)) {
+      fetchInvoice();
+    }
   }, []);
   useEffect(() => {
     if (searchString !== '') {

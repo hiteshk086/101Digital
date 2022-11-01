@@ -11,11 +11,19 @@ const ViewInvoice = ({route}: any) => {
       <Container>
         <ItemContainer>
           <Text>Invoice Number</Text>
-          <Text>{item.invoiceNumber}</Text>
+          <Text>{item.invoiceNumber || item.invoiceNumber}</Text>
         </ItemContainer>
         <ItemContainer>
           <Text>Invoice Refrence</Text>
           <Text>{item.referenceNo}</Text>
+        </ItemContainer>
+        <ItemContainer>
+          <Text>Invoice Date</Text>
+          <Text>{moment(item.invoiceDate).format('ll')}</Text>
+        </ItemContainer>
+        <ItemContainer>
+          <Text>Created At</Text>
+          <Text>{moment(item.createdAt).format('ll')}</Text>
         </ItemContainer>
         <ItemContainer>
           <Text>Payment Due</Text>

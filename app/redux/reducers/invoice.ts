@@ -1,5 +1,5 @@
 import {AnyAction} from 'redux';
-import {CREATE_INVOICE_SUCCESS} from '../../constants/actions';
+import {ADD_INVOICE, CREATE_INVOICE_SUCCESS} from '../../constants/actions';
 import {defaultState} from '../initialState';
 
 const invoiceReducer = (
@@ -7,6 +7,13 @@ const invoiceReducer = (
   action: AnyAction,
 ) => {
   switch (action.type) {
+    case ADD_INVOICE:
+      const arr = [...state.allInvoices];
+      arr.push(action.data);
+      return {
+        ...state,
+        allInvoices: arr,
+      };
     case CREATE_INVOICE_SUCCESS:
       return {
         ...state,

@@ -7,7 +7,7 @@ import {FieldValues, SubmitHandler, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import ControlledInput from '../../components/core/controlled/ControlledInput';
-import {createInvoice} from '../../redux/actions/invoice';
+import {createInvoice, pushNewInvoice} from '../../redux/actions/invoice';
 import {getRandNumber, getRandomWord, makeid} from '../../utils/functions';
 import axios from 'axios';
 import {BASE_URL} from '../../constants';
@@ -125,6 +125,7 @@ const CreateInvoice = () => {
     const orgToken: any = await AsyncStorage.getItem('@org_token');
     const accessToken = JSON.parse(tokenData).access_token;
     const body = hello;
+    body.listOfInvoices[0].invoiceNumber = makeid(5);
     body.listOfInvoices[0].invoiceReference = data.invoiceRef;
     body.listOfInvoices[0].invoiceNumber = data.invoiceNum;
     body.listOfInvoices[0].description = data.description;
@@ -142,7 +143,10 @@ const CreateInvoice = () => {
           'Content-Type': 'application/json',
         },
       })
-      .then(res => console.log('Create : ', res.data))
+      .then(res => {
+        console.log('Create : ', res.data);
+        // dispatch(pushNewInvoice(body));
+      })
       .catch(err => console.log('Error :: ', err));
   };
   return (

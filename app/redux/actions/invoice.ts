@@ -1,4 +1,5 @@
 import {
+  ADD_INVOICE,
   CREATE_INVOICE_FAILURE,
   CREATE_INVOICE_REQUEST,
   CREATE_INVOICE_SUCCESS,
@@ -25,6 +26,13 @@ export const createInvoice = (data: any) => {
       CREATE_INVOICE_SUCCESS,
       CREATE_INVOICE_FAILURE,
     ],
+  };
+};
+
+export const pushNewInvoice = (data: any) => {
+  return {
+    type: ADD_INVOICE,
+    data,
   };
 };
 const hello = {
