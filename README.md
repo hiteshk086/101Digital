@@ -1,7 +1,7 @@
 # 101Digital
 To run the project follow the steps:
 ```bash
-pip install foobar
+yarn install
 ```
 ```bash
 cd ios && pod install && cd ..
