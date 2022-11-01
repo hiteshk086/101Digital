@@ -133,7 +133,6 @@ const CreateInvoice = () => {
     body.listOfInvoices[0].items[0].itemName = getRandomWord();
     body.listOfInvoices[0].items[0].description = makeid(10);
     // dispatch(createInvoice(data));
-    console.log('Create Data : ', body);
     axios
       .post(BASE_URL + '/invoice-service/2.0.0/invoices', body, {
         headers: {

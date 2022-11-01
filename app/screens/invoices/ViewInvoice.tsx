@@ -2,7 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import SafeArea from '../../components/core/SafeArea';
 import styled from 'styled-components/native';
-
+import moment from 'moment';
 const ViewInvoice = ({route}: any) => {
   const {item} = route.params;
   console.log('Item : ', item);
@@ -16,6 +16,18 @@ const ViewInvoice = ({route}: any) => {
         <ItemContainer>
           <Text>Invoice Refrence</Text>
           <Text>{item.referenceNo}</Text>
+        </ItemContainer>
+        <ItemContainer>
+          <Text>Payment Due</Text>
+          <Text>{moment(item.dueDate).format('ll')}</Text>
+        </ItemContainer>
+        <ItemContainer>
+          <Text>Total({item.currency})</Text>
+          <Text>{item.totalAmount}</Text>
+        </ItemContainer>
+        <ItemContainer>
+          <Text>Description</Text>
+          <Text>{item.description}</Text>
         </ItemContainer>
       </Container>
     </SafeArea>
