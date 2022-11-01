@@ -1,3 +1,5 @@
+// Screen that will be displayed when user want to see an invoice
+
 import {View, Text} from 'react-native';
 import React from 'react';
 import SafeArea from '../../components/core/SafeArea';

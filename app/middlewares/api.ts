@@ -1,3 +1,9 @@
+/*
+  api.ts
+  This file will handle the api that are beign called using redux.
+  This will store the API repsonse to the redux store directly
+*/
+
 import {MainState} from '../redux/interfaces';
 
 import axios, {AxiosRequestConfig, AxiosResponse, Method} from 'axios';

@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+// Screen that will be displayed when user want to create a new invoice
 import React from 'react';
 import SafeArea from '../../components/core/SafeArea';
 import styled from 'styled-components/native';
@@ -7,7 +7,6 @@ import {FieldValues, SubmitHandler, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import ControlledInput from '../../components/core/controlled/ControlledInput';
-import {createInvoice, pushNewInvoice} from '../../redux/actions/invoice';
 import {getRandNumber, getRandomWord, makeid} from '../../utils/functions';
 import axios from 'axios';
 import {BASE_URL} from '../../constants';
@@ -133,19 +132,16 @@ const CreateInvoice = () => {
     body.listOfInvoices[0].items[0].rate = getRandNumber();
     body.listOfInvoices[0].items[0].itemName = getRandomWord();
     body.listOfInvoices[0].items[0].description = makeid(10);
-    // dispatch(createInvoice(data));
     axios
       .post(BASE_URL + '/invoice-service/2.0.0/invoices', body, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          //   'Operation-Mode': 'SYNC',
           'org-token': orgToken,
           'Content-Type': 'application/json',
         },
       })
       .then(res => {
         console.log('Create : ', res.data);
-        // dispatch(pushNewInvoice(body));
       })
       .catch(err => console.log('Error :: ', err));
   };

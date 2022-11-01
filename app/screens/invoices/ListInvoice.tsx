@@ -1,3 +1,5 @@
+// Screen that will be displayed when user want to see all invoices
+
 import {View, Text, FlatList, TextInput} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import SafeArea from '../../components/core/SafeArea';

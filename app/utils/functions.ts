@@ -1,3 +1,5 @@
+// Miscellaneous functions
+
 const words = [
   'Got',
   'ability',
